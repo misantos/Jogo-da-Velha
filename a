@@ -1,8 +1,0 @@
-Tamanho do tabuleiro = 3
-Quantidade de Jogadores = 2
-Jogador 1 = a
-Jogador 2 = b
-Jogadas (id, linha, coluna):
-Jogada 1: id=1, linha=1, coluna=1
-Jogada 2: id=1, linha=0, coluna=1
-Vencedor: a
