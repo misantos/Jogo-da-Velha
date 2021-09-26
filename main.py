@@ -77,16 +77,17 @@ def main():
         vetor_jogadores.append(temp)
 
     nome_arq = str(input("Entre com o caminho para o arquivo a qual deseja salvar os dados: "))
+    arquivo = open(nome_arq, 'w')
+    arquivo.write('Tamanho do tabuleiro = ' + str(tam_matriz) + '\n')
+    arquivo.write('Quantidade de Jogadores = ' + str(qnt_jogadores) + '\n')
+    for i in range(len(vetor_jogadores)):
+        arquivo.write('Jogador ' + str(i+1) + ' = ' + vetor_jogadores[i].nome + '\n')
+    arquivo.write('Jogadas: (id, linha, coluna)')
 
 
 
     matriz = crieMatriz(tam_matriz, " ")
     printMatriz(matriz)
-    matriz[1][-1] = 6
-    matriz[2][-2] = 6
-    matriz[3][-3] = 6
-
-    print(verificaVencedor(matriz))
-    printMatriz(matriz)
+    arquivo.close()
 
 main()

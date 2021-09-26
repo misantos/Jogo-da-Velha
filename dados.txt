@@ -1,0 +1,5 @@
+Tamanho do tabuleiro = 3
+Quantidade de Jogadores = 2
+Jogador 1 = Victor
+Jogador 2 = Milena
+Jogadas: (id, linha, coluna)
