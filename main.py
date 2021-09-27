@@ -30,45 +30,103 @@ def printMatriz(matriz):
     print("", end=" ")
     print(*matriz[-1], sep = " | ")
 
-def verificaVencedor(tabuleiro, linha, coluna) -> int:
+def checa_horizontal(tabuleiro, linha, coluna)-> int:
     tam_mat = len(tabuleiro)
-    vencedor = -1
     count = 0
-    for i in range(-1, 1, 1):
-        if coluna+i >= 0 and coluna+i < tam_mat and linha-1 >= 0 and tabuleiro[linha-1][coluna+i] == tabuleiro[linha][coluna]:
-            count += 1
-            if coluna+(2 * i) >= 0 and coluna+(2 * i) < tam_mat and linha-2 >= 0 and tabuleiro[linha-2][coluna+(2 * i)] == tabuleiro[linha][coluna]:
+    vencedor = 0
+    for i in range (tam_mat):
+        for j in range (tam_mat):
+            if(tabuleiro[i][j] == tabuleiro[linha][coluna]):
+                count = count + 1
+            else:
+                count = 0
+            if(count > 2):
                 vencedor = tabuleiro[linha][coluna]
-                break;
-        if coluna+i >= 0 and coluna+i < tam_mat and linha+1 < tam_mat and tabuleiro[linha+1][coluna+i] == tabuleiro[linha][coluna]:
-            count += 1
-            if coluna+(2 * i) >= 0 and coluna+(2 * i) < tam_mat and linha+2 < tam_mat and tabuleiro[linha+2][coluna+(2 * i)] == tabuleiro[linha][coluna]:
+                return vencedor 
+        count = 0
+    return -1
+
+
+def checa_vertical(tabuleiro, linha, coluna)-> int:
+    tam_mat = len(tabuleiro)
+    count = 0
+    vencedor = 0
+    for j in range (tam_mat):
+        for i in range (tam_mat):
+            if(tabuleiro[i][j] == tabuleiro[linha][coluna]):
+                count = count + 1
+            else:
+                count = 0
+            if(count > 2):
                 vencedor = tabuleiro[linha][coluna]
-                break;
-            if count == 1 and linha+1 < tam_mat and coluna + (i * -1) < tam_mat and coluna + (i * -1) >= 0 and tabuleiro[linha][coluna] == tabuleiro[linha+1][coluna + (i * -1)]:
+                return vencedor
+        count = 0
+    return -1
+
+
+def checa_diagonal(tabuleiro, linha, coluna)-> int:
+    tam_mat = len(tabuleiro)
+    count = 0
+    vencedor = 0
+    for d in range (tam_mat):
+        for j in range (tam_mat):
+            if(j + d >= tam_mat):
+                break
+            if(tabuleiro[j][j+d] == tabuleiro[linha][coluna]):
+                count = count + 1
+            else:
+                count = 0
+            if(count > 2):
                 vencedor = tabuleiro[linha][coluna]
-                break;
-        if count == 2:
-            vencedor = tabuleiro[linha][coluna]
-            break;
+                return vencedor
         count = 0
 
     count = 0
+    for d in range (tam_mat):
+        for j in range (tam_mat):
+            if(j + d >= tam_mat):
+                break
+            if(tabuleiro[j+d][j] == tabuleiro[linha][coluna]):
+                count = count + 1
+            else:
+                count = 0
+            if(count > 2):
+                vencedor = tabuleiro[linha][coluna]
+                return vencedor
+        count = 0
 
+    count = 0
+    for d in range (tam_mat):
+        for j in range (tam_mat):
+            if(tam_mat - 1 - d - j < 0):
+                break
+            if(tabuleiro[j][tam_mat - 1 - d - j] == tabuleiro[linha][coluna]):
+                count = count + 1
+            else:
+                count = 0
+            if(count > 2):
+                vencedor = tabuleiro[linha][coluna]
+                return vencedor
+        count = 0
 
-    if coluna-1 >= 0 and tabuleiro[linha][coluna] == tabuleiro[linha][coluna - 1]:
-        count += 1
-        if coluna-2 >= 0 and tabuleiro[linha][coluna] == tabuleiro[linha][coluna - 2]:
-            vencedor = tabuleiro[linha][coluna]
-    if coluna+1 < tam_mat and tabuleiro[linha][coluna] == tabuleiro[linha][coluna + 1]:
-        count += 1
-        if coluna+2 < tam_mat and tabuleiro[linha][coluna] == tabuleiro[linha][coluna + 2]:
-            vencedor = tabuleiro[linha][coluna]
+    count = 0
+    for d in range (tam_mat):
+        for j in range (tam_mat):
+            if(j + d >= tam_mat):
+                break
+            if(tabuleiro[tam_mat - j - 1][j + d] == tabuleiro[linha][coluna]):
+                count = count + 1
+            else:
+                count = 0
+            if(count > 2):
+                vencedor = tabuleiro[linha][coluna]
+                return vencedor
+        count = 0
+    return -1
 
-    if count == 2:
-        vencedor = tabuleiro[linha][coluna]
+def verificaVencedor(tabuleiro, linha, coluna) -> int:
 
-    return vencedor
+    return checa_horizontal(tabuleiro, linha,coluna) and checa_vertical(tabuleiro, linha,coluna) and checa_diagonal(tabuleiro, linha,coluna)
 
 def main():
     tam_matriz = int(input("Entre com o tamanho do tabuleiro: "))
