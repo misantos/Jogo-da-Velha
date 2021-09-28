@@ -1,0 +1,15 @@
+Tamanho do tabuleiro = 3
+Quantidade de Jogadores = 2
+Jogador 1 = mi
+Jogador 2 = ana
+Jogadas (id, linha, coluna):
+Jogada 1: id=1, linha=0, coluna=1
+Jogada 2: id=2, linha=0, coluna=0
+Jogada 3: id=1, linha=0, coluna=2
+Jogada 4: id=2, linha=1, coluna=2
+Jogada 5: id=1, linha=2, coluna=2
+Jogada 6: id=2, linha=2, coluna=0
+Jogada 7: id=1, linha=1, coluna=0
+Jogada 8: id=2, linha=1, coluna=1
+Jogada 9: id=1, linha=2, coluna=1
+Deu velha! =(
